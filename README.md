@@ -1,8 +1,8 @@
-# 📚 FocusGuard: A Distraction-Limiting Study Companion
+# 📚 FokuSpace: A Distraction-Limiting Study Companion
 
 ## 🧠 Project Idea & Description
 
-**FocusGuard** is a cross-platform productivity application designed to help students and professionals stay focused by limiting distractions during study or work sessions. It includes a desktop application built with **Electron.js**, and a user-facing website built using the **MERN stack (MongoDB, Express.js, React.js, Node.js)**.
+**FokuSpace** is a cross-platform productivity application designed to help students and professionals stay focused by limiting distractions during study or work sessions. It includes a desktop application built with **Electron.js**, and a user-facing website built using the **MERN stack (MongoDB, Express.js, React.js, Node.js)**.
 
 The core idea is to create a **custom-themed workspace** where users can:
 - **Whitelist only certain apps** (e.g., VSCode, Chrome, Figma) during focus sessions.
