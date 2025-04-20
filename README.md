@@ -42,7 +42,7 @@ The companion **website** provides:
 
 ## 🚀 Technologies Used
 
-- Frontend: React.js, Tailwind CSS, V0.dev,Bootstrap Framer Motion, shadcn/ui  
+- Frontend: React.js, Tailwind CSS, V0.dev, Bootstrap, Framer Motion, shadcn/ui  
 - Backend: Node.js, Express.js, MongoDB, JWT, Bcrypt  
 - Desktop App: Electron.js  
 - Deployment: Vercel/Netlify/Cloudfare (Frontend), Render/Heroku (Backend)  
