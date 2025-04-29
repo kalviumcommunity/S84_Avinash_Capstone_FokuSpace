@@ -51,7 +51,7 @@ router.post('/register', [
 
         await newUser.save();
 
-        res.status(200).json({ message: 'OTP sent to email. Please verify to complete registration.' });
+        res.status(200).json({ message: 'OTP sent to email. Please verify to complete registration.', user: newUser });
 
     } catch (error) {
         console.error(error);
