@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 require('dotenv').config();
 const cors = require('cors');
 const connectToDb = require('./database/database')
-const User = require('./models/User');
+const userRoutes = require('./routes/route')
 
 const app = express();
 app.use(express.json());
@@ -16,6 +16,7 @@ app.get('/', (req, res) => {
     res.send(`FokuSpace server is running 🚀`)
 })
 
+app.use('/accounts', userRoutes)
 
 app.listen(Port, async() => {
     try{
