@@ -14,7 +14,7 @@ router.use(express.json());
 
 router.post('/register', [
     body('email').isEmail().withMessage('Please provide a valid email address.'),
-    body('password').isLength({ min: 8 }).withMessage('Password must be at least 6 characters long.'),
+    body('password').isLength({ min: 8 }).withMessage('Password must be at least 8 characters long.'),
 ], async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
