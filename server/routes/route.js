@@ -148,11 +148,11 @@ router.get('/users', async(req, res) => {
 
 router.get('/user', authenticate, async (req, res) => {
     try {
-        const user = await User.find();
-        if (!user) {
-            return res.status(404).json({ error: 'User not found.' });
+        const users = await User.find();
+        if (users.length === 0) {
+            return res.status(404).json({ error: 'No users found.' });
         }
-        res.status(200).json({ user });
+        res.status(200).json({ users });
     } catch (err) {
         console.error(err);
         res.status(500).json({ error: 'Server error, please try again later.' });
