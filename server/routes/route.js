@@ -61,9 +61,9 @@ router.post('/register', [
 
 
 router.put('/edit/user', authenticate, [
-    body('name').optional().isString().withMessage('Name should be a string'),
+    body('name').optional().isString().trim().escape().withMessage('Name should be a string'),
     body('age').optional().isInt({ min: 18 }).withMessage('Age must be at least 18'),
-    body('profession').optional().isString().withMessage('Profession should be a string'),
+    body('profession').optional().isString().trim().escape().withMessage('Profession should be a string'),
 ], async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
