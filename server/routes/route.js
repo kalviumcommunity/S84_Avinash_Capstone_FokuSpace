@@ -146,4 +146,31 @@ router.get('/users', async(req, res) => {
     }
 });
 
+router.get('/user', authenticate, async (req, res) => {
+    try {
+        const user = await User.find();
+        if (!user) {
+            return res.status(404).json({ error: 'User not found.' });
+        }
+        res.status(200).json({ user });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: 'Server error, please try again later.' });
+    }
+});
+
+// Delete a user by ID (requires authentication)
+router.delete('/user/:id', authenticate, async (req, res) => {
+    try {
+        const user = await User.findByIdAndDelete(req.params.id);
+        if (!user) {
+            return res.status(404).json({ error: 'User not found.' });
+        }
+        res.status(200).json({ message: 'User deleted successfully.' });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: 'Server error, please try again later.' });
+    }
+});
+
 module.exports = router
