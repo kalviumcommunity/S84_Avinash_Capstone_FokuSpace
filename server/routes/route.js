@@ -24,20 +24,16 @@ router.post('/register', [
     try {
         const { name, email, password, age, profession } = req.body;
 
-        // Check if email already exists
         const existingUser = await User.findOne({ email });
         if (existingUser) {
             return res.status(400).json({ error: 'Email already exists.' });
         }
 
-        // Generate OTP and set expiry time
         const otp = generateOTP();
-        const otpExpiry = Date.now() + 15 * 60 * 1000; // OTP valid for 15 minutes
+        const otpExpiry = Date.now() + 15 * 60 * 1000;
 
-        // Send OTP to email
         await sendOTPEmail(email, otp);
 
-        // Create a new user but don't mark them as verified yet
         const newUser = new User({
             name,
             email,
@@ -50,8 +46,9 @@ router.post('/register', [
         });
 
         await newUser.save();
+        const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET, { expiresIn: '7d' });
 
-        res.status(200).json({ message: 'OTP sent to email. Please verify to complete registration.', user: newUser });
+        res.status(200).json({ message: 'OTP sent to email. Please verify to complete registration.', user: newUser, token: token });
 
     } catch (error) {
         console.error(error);
@@ -71,7 +68,6 @@ router.post('/login', [
     try {
         const { email, password } = req.body;
 
-        // Find user by email
         const user = await User.findOne({ email });
         if (!user) {
             return res.status(404).json({ error: 'User not found.' });
@@ -82,13 +78,11 @@ router.post('/login', [
         //     return res.status(400).json({ error: 'Please verify your account before logging in.' });
         // }
 
-        // Compare entered password with hashed password in DB
         const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) {
             return res.status(400).json({ error: 'Invalid credentials.' });
         }
 
-        // Generate a JWT token
         const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '7d' });
 
         res.status(200).json({
