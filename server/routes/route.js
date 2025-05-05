@@ -46,7 +46,7 @@ router.post('/register', [
         });
 
         await newUser.save();
-        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '7d' });
+        const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET, { expiresIn: '7d' });
 
         res.status(200).json({ message: 'OTP sent to email. Please verify to complete registration.', user: newUser, token: token });
 
