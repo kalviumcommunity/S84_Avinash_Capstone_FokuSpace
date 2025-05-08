@@ -29,8 +29,10 @@ const VerifyOtp = () => {
     console.log('Submitting OTP for:', email);
     if (!otp || otp.length !== 6) {
       setError('Please enter a valid 6-digit OTP');
+      
       setIsLoading(false);
       return;
+    
     }
 
     try {
