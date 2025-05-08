@@ -20,12 +20,17 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await register(formData);
-      navigate('/verify-otp', { state: { email: formData.email } });
+      const payload = {
+        ...formData,
+        age: Number(formData.age), 
+      };
+      await register(payload);
+      navigate('/', { state: { email: formData.email } });
     } catch (err) {
       setError(err.response?.data?.error || 'Registration failed');
     }
   };
+  
 
   return (
     <div>
