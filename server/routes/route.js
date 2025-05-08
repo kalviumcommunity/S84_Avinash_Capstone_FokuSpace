@@ -74,9 +74,9 @@ router.post('/login', [
         }
 
         // Check if the user is verified
-        // if (!user.isVerified) {
-        //     return res.status(400).json({ error: 'Please verify your account before logging in.' });
-        // }
+        if (!user.isVerified) {
+            return res.status(400).json({ error: 'Please verify your account before logging in.' });
+        }
 
         const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) {
