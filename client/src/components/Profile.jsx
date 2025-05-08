@@ -1,121 +1,189 @@
-// src/components/Profile.jsx
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { getProfile, updateProfile, changePassword } from '../api';
+   import { useNavigate } from 'react-router-dom';
+   import { getProfile, updateProfile, changePassword } from '../api';
+   import '../index.css';
 
-const Profile = () => {
-  const [user, setUser] = useState(null);
-  const [profileData, setProfileData] = useState({ name: '', age: '', profession: '' });
-  const [passwordData, setPasswordData] = useState({ currentPassword: '', newPassword: '' });
-  const [error, setError] = useState('');
-  const navigate = useNavigate();
-  const token = localStorage.getItem('token');
+   const Profile = () => {
+     const [user, setUser] = useState(null);
+     const [profileData, setProfileData] = useState({ name: '', age: '', profession: '' });
+     const [passwordData, setPasswordData] = useState({ currentPassword: '', newPassword: '' });
+     const [error, setError] = useState('');
+     const [isLoading, setIsLoading] = useState(false);
+     const navigate = useNavigate();
 
-  useEffect(() => {
-    if (!token) {
-      navigate('/login');
-      return;
-    }
-    const fetchProfile = async () => {
-      try {
-        const response = await getProfile(token);
-        setUser(response.data);
-        setProfileData({
-          name: response.data.name || '',
-          age: response.data.age || '',
-          profession: response.data.profession || '',
-        });
-      } catch (err) {
-        setError('Failed to fetch profile');
-        localStorage.removeItem('token');
-        navigate('/login');
-      }
-    };
-    fetchProfile();
-  }, [token, navigate]);
+     useEffect(() => {
+       console.log('Fetching profile');
+       const fetchProfile = async () => {
+         const token = localStorage.getItem('token');
+         console.log('Profile fetch, token:', token ? '[REDACTED]' : 'No token');
+         if (!token) {
+           console.warn('No token found, redirecting to login');
+           navigate('/login');
+           return;
+         }
+         try {
+           const user = await getProfile();
+           console.log('Profile fetched:', user.email);
+           setUser(user);
+           setProfileData({
+             name: user.name || '',
+             age: user.age || '',
+             profession: user.profession || '',
+           });
+         } catch (err) {
+           console.error('Fetch profile error:', err);
+           setError('Failed to fetch profile');
+           localStorage.removeItem('token');
+           navigate('/login');
+         }
+       };
+       fetchProfile();
+     }, [navigate]);
 
-  const handleChange = (e, setter) =>
-    setter((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+     const handleChange = (e, setter) =>
+       setter((prev) => ({ ...prev, [e.target.name]: e.target.value }));
 
-  const handleProfileSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      await updateProfile(token, profileData);
-      setUser({ ...user, ...profileData });
-      alert('Profile updated successfully');
-    } catch (err) {
-      setError(err.response?.data?.error || 'Failed to update profile');
-    }
-  };
+     const handleProfileSubmit = async (e) => {
+       e.preventDefault();
+         setError('');
+       setIsLoading(true);
 
-  const handlePasswordSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      await changePassword(token, passwordData);
-      alert('Password changed successfully');
-      setPasswordData({ currentPassword: '', newPassword: '' });
-    } catch (err) {
-      setError(err.response?.data?.error || 'Failed to change password');
-    }
-  };
+       console.log('Updating profile:', profileData);
+       if (!profileData.name || !profileData.age || !profileData.profession) {
+         setError('Please fill in all fields');
+         setIsLoading(false);
+         return;
+       }
 
-  const handleLogout = () => {
-    localStorage.removeItem('token');
-    navigate('/login');
-  };
+       try {
+         await updateProfile(profileData);
+         console.log('Profile updated');
+         setUser({ ...user, ...profileData });
+         alert('Profile updated successfully');
+       } catch (err) {
+         console.error('Update profile error:', err);
+         setError(err || 'Failed to update profile');
+       } finally {
+         setIsLoading(false);
+       }
+     };
 
-  if (!user) return <div>Loading...</div>;
+     const handlePasswordSubmit = async (e) => {
+       e.preventDefault();
+       setError('');
+       setIsLoading(true);
 
-  return (
-    <div>
-      <h2>Profile</h2>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      <p>Email: {user.email}</p>
-      <button onClick={handleLogout}>Logout</button>
+       console.log('Changing password');
+       if (!passwordData.currentPassword || !passwordData.newPassword) {
+         setError('Please fill in all fields');
+         setIsLoading(false);
+         return;
+       }
 
-      <h3>Update Profile</h3>
-      <form onSubmit={handleProfileSubmit}>
-        {['name', 'age', 'profession'].map((field) => (
-          <div key={field}>
-            <label>{field.charAt(0).toUpperCase() + field.slice(1)}:</label>
-            <input
-              type={field === 'age' ? 'number' : 'text'}
-              name={field}
-              value={profileData[field]}
-              onChange={(e) => handleChange(e, setProfileData)}
-              required
-            />
-          </div>
-        ))}
-        <button type="submit">Update Profile</button>
-      </form>
+       try {
+         await changePassword(passwordData);
+         console.log('Password changed');
+         alert('Password changed successfully');
+         setPasswordData({ currentPassword: '', newPassword: '' });
+       } catch (err) {
+         console.error('Change password error:', err);
+         setError(err || 'Failed to change password');
+       } finally {
+         setIsLoading(false);
+       }
+     };
 
-      <h3>Change Password</h3>
-      <form onSubmit={handlePasswordSubmit}>
-        <div>
-          <label>Current Password:</label>
-          <input
-            type="password"
-            name="currentPassword"
-            value={passwordData.currentPassword}
-            onChange={(e) => handleChange(e, setPasswordData)}
-            required
-          />
-        </div>
-        <div>
-          <label>New Password:</label>
-          <input
-            type="password"
-            name="newPassword"
-            value={passwordData.newPassword}
-            onChange={(e) => handleChange(e, setPasswordData)}
-            required
-          />
-        </div>
-        <button type="submit">Change Password</button>
-      </form>
-    </div>
-  );
-};
+     const handleLogout = () => {
+       console.log('Logging out from profile');
+       localStorage.removeItem('token');
+       localStorage.removeItem('pendingVerificationEmail');
+       navigate('/login');
+     };
 
-export default Profile;
+     if (!user) return <div>Loading...</div>;
+
+     return (
+       <div className="form-container">
+         <h2>Profile</h2>
+         {error && <p className="error-message">{error}</p>}
+         <p>Email: {user.email}</p>
+         <button onClick={handleLogout}>Logout</button>
+
+         <h3>Update Profile</h3>
+         <form onSubmit={handleProfileSubmit}>
+           <div className="form-group">
+             <label>Name:</label>
+             <input
+               type="text"
+               name="name"
+               value={profileData.name}
+               onChange={(e) => handleChange(e, setProfileData)}
+               required
+               disabled={isLoading}
+             />
+           </div>
+           <div className="form-group">
+             <label>Age:</label>
+             <input
+               type="number"
+               name="age"
+               value={profileData.age}
+               onChange={(e) => handleChange(e, setProfileData)}
+               required
+               min="18"
+               disabled={isLoading}
+             />
+           </div>
+           <div className="form-group">
+             <label>Profession:</label>
+             <input
+               type="text"
+               name="profession"
+               value={profileData.profession}
+               onChange={(e) => handleChange(e, setProfileData)}
+               required
+               disabled={isLoading}
+             />
+           </div>
+           <button type="submit" disabled={isLoading}>
+             {isLoading ? 'Updating...' : 'Update Profile'}
+           </button>
+         </form>
+
+         {!user.isGoogleAccount && (
+           <>
+             <h3>Change Password</h3>
+             <form onSubmit={handlePasswordSubmit}>
+               <div className="form-group">
+                 <label>Current Password:</label>
+                 <input
+                   type="password"
+                   name="currentPassword"
+                   value={passwordData.currentPassword}
+                   onChange={(e) => handleChange(e, setPasswordData)}
+                   required
+                   disabled={isLoading}
+                 />
+               </div>
+               <div className="form-group">
+                 <label>New Password:</label>
+                 <input
+                   type="password"
+                   name="newPassword"
+                   value={passwordData.newPassword}
+                   onChange={(e) => handleChange(e, setPasswordData)}
+                   required
+                   disabled={isLoading}
+                 />
+               </div>
+               <button type="submit" disabled={isLoading}>
+                 {isLoading ? 'Changing...' : 'Change Password'}
+               </button>
+             </form>
+           </>
+         )}
+       </div>
+     );
+   };
+
+   export default Profile;

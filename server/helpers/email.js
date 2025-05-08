@@ -1,28 +1,29 @@
-// helpers/email.js
 const nodemailer = require('nodemailer');
 
-const sendOTPEmail = async (email, otp) => {
-    const transporter = nodemailer.createTransport({
-        service: 'gmail',
-        auth: {
-            user: process.env.EMAIL_FROM, // Your email address
-            pass: process.env.EMAIL_PASS, // Your email password
-        },
-    });
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: process.env.EMAIL_FROM,
+    pass: process.env.EMAIL_PASS,
+  },
+});
 
-    const mailOptions = {
-        from: process.env.EMAIL_FROM,
-        to: email,
-        subject: 'Your OTP Code',
-        text: `Your OTP code is: ${otp}`,
-    };
+const sendOTPEmail = async (email, content) => {
+  console.log(`Sending email to ${email}`);
+  const mailOptions = {
+    from: process.env.EMAIL_FROM,
+    to: email,
+    subject: 'FokuSpace Account Verification',
+    text: content,
+  };
 
-    try {
-        await transporter.sendMail(mailOptions);
-    } catch (error) {
-        console.log('Error sending OTP email: ', error);
-        throw new Error('Failed to send OTP', { cause: error });
-    }
+  try {
+    await transporter.sendMail(mailOptions);
+    console.log(`Email sent successfully to ${email}`);
+  } catch (error) {
+    console.error('Error sending email to', email, ':', error.message);
+    throw new Error(`Failed to send email: ${error.message}`);
+  }
 };
 
 module.exports = sendOTPEmail;

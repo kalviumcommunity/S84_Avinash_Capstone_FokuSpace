@@ -1,9 +1,12 @@
-// helpers/otp.js
 const otpGenerator = require('otp-generator');
 
 const generateOTP = () => {
-    const otp = otpGenerator.generate(6, { digits: true, alphabets: false, specialChars: false });
-    return otp;
+  const otp = otpGenerator.generate(6, {
+    digits: true,
+    lowerCaseAlphabets: false,
+  });
+  console.log('Generated OTP:', otp); // Remove in production
+  return otp;
 };
 
 module.exports = generateOTP;

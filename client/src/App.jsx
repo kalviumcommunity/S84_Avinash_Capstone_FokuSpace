@@ -1,42 +1,50 @@
-import React from "react";
-import { Routes, Route, Link } from "react-router-dom";
-import Register from "./components/Register";
-import VerifyOtp from "./components/OtpVerification";
-import Login from "./components/Login";
-import Profile from "./components/Profile";
-import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
-import { PrivateRoute } from "./components/PrivateRoute";
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Home from './pages/Home';
+import Dashboard from './pages/Dashboard';
+import Register from './components/Register';
+import VerifyOtp from './components/OtpVerification';
+import Login from './components/Login';
+import Profile from './components/Profile';
+import ResetPasswordRequest from './components/ResetPasswordRequest';
+import ResetPassword from './components/ResetPassword';
+import { PrivateRoute } from './components/PrivateRoute';
+import GoogleCallback from './components/GoogleCallback';
+import './index.css';
 
-
+console.log('Rendering App component');
 function App() {
   return (
     <div className="App">
-      <nav>
-        <Link to="/">Home</Link> | <Link to="/register">Register</Link> |{" "}
-        <Link to="/login">Login</Link> | <Link to="/profile">Profile</Link>
-      </nav>
-      <GoogleLogin
-          onSuccess={credentialResponse => {
-            const token = credentialResponse.credential;
-            // Send token to backend for verification + login
-          }}
-          onError={() => {
-            console.log('Login Failed');
-          }}
-        />
-
-      <Routes>
-        <Route path="/" element={<h1>Welcome to FokuSpace</h1>} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/verify-otp" element={<VerifyOtp />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/profile" element={
-            <PrivateRoute>
-              <Profile />
-            </PrivateRoute>
-          }
-        />
-      </Routes>
+      <Navbar />
+      <div className="container">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/verify-otp" element={<VerifyOtp />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/google/callback" element={<GoogleCallback />} />
+          <Route
+            path="/profile"
+            element={
+              <PrivateRoute>
+                <Profile />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/dashboard"
+            element={
+              <PrivateRoute>
+                <Dashboard />
+              </PrivateRoute>
+            }
+          />
+          <Route path="/reset-password-request" element={<ResetPasswordRequest />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
+        </Routes>
+      </div>
     </div>
   );
 }
