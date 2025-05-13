@@ -4,7 +4,7 @@ import axios from 'axios';
    const baseURL = (import.meta.env.VITE_API_URL || 'http://localhost:9000/accounts').replace(/\/+$/, '');
    const API = axios.create({
      baseURL,
-     timeout: 10000,
+     timeout: 5000,
      headers: {
        'Content-Type': 'application/json',
      },
@@ -69,7 +69,7 @@ import axios from 'axios';
    export const resendOtp = async (data) => API.post('/resend-otp', data);
    export const login = async (credentials) => API.post('/login', credentials);
    export const googleLogin = () => {
-     console.log('Initiating Google OAuth redirect');
+     console.log('Initiating Google OAuth redirect', `${baseURL}/google`);
      window.location.href = `${baseURL}/google`;
    };
    export const getProfile = async () => API.get('/profile');

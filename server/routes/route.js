@@ -4,7 +4,9 @@ const User = require('../models/User');
 const bcrypt = require('bcryptjs');
 require('dotenv').config();
 const jwt = require('jsonwebtoken');
+// passport is a library for authentication for apps like facebook, google, github etc.
 const passport = require('passport');
+// used to authenticate using google in nodejs
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const { body, validationResult } = require('express-validator');
 const authenticate = require('../middleware/jwtmiddleware');
@@ -77,6 +79,7 @@ router.get(
     const token = jwt.sign({ id: req.user._id }, process.env.JWT_SECRET, {
       expiresIn: '7d',
     });
+   res.redirect(`${process.env.CLIENT_URL}/google/callback?token=${token}`);
     res.status(200).json({ message: 'Login successful.', token });
   }
 );
