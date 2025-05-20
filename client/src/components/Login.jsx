@@ -2,11 +2,14 @@ import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { login, googleLogin } from '../api';
 import '../index.css';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
+
 
 const Login = () => {
   const [formData, setFormData] = useState({ email: '', password: '' });
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+    const [showPassword, setShowPassword] = useState(false); // 👁️ toggle state
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -50,7 +53,7 @@ const Login = () => {
   };
 
   return (
-    <div className="form-container">
+       <div className="login-container">
       <h2>Login</h2>
       {error && <p className="error-message">{error}</p>}
       {location.state?.error && (
@@ -68,28 +71,34 @@ const Login = () => {
             disabled={isLoading}
           />
         </div>
-        <div className="form-group">
+        <div className="form-group password-group">
           <label>Password:</label>
           <input
-            type="password"
+            type={showPassword ? 'text' : 'password'}
             name="password"
             value={formData.password}
             onChange={handleChange}
             required
             disabled={isLoading}
           />
+          <span
+            className="password-toggle-icon"
+            onClick={() => setShowPassword(!showPassword)}
+          >
+            {showPassword ? <FaEyeSlash /> : <FaEye />}
+          </span>
         </div>
-        <button type="submit" disabled={isLoading}>
+        <button type="submit" className="Login__button" disabled={isLoading}>
           {isLoading ? 'Logging in...' : 'Login'}
         </button>
       </form>
       <button onClick={googleLogin} className="google-btn" disabled={isLoading}>
         Login with Google
       </button>
-      <p>
+      <p className="register-link">
         Forgot password? <a href="/reset-password-request">Reset it</a>
       </p>
-      <p>
+      <p className="register-link">
         Don't have an account? <a href="/register">Register here</a>
       </p>
     </div>

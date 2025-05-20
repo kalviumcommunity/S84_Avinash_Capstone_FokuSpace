@@ -78,3 +78,4 @@ import axios from 'axios';
    export const resetPasswordRequest = async (data) => API.post('/reset-password-request', data);
    export const resetPassword = async (data) => API.post('/reset-password', data);
    export const getUsers = async () => API.get('/users');
+   export const deleteAccount = async (data) => API.delete('/delete', { data });
