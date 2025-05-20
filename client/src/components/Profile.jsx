@@ -114,7 +114,10 @@ import React, { useState, useEffect } from 'react';
       setSuccess('Account deleted successfully');
       localStorage.removeItem('token');
       localStorage.removeItem('pendingVerificationEmail');
-      setTimeout(() => navigate('/login'), 2000);
+      setSuccess('Account deleted successfully');
+      localStorage.removeItem('token');
+      localStorage.removeItem('pendingVerificationEmail');
+      navigate('/login');
     } catch (err) {
       console.error('Delete account error:', err);
       setError(err || 'Failed to delete account');
