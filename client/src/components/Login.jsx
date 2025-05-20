@@ -85,7 +85,7 @@ const Login = () => {
             className="password-toggle-icon"
             onClick={() => setShowPassword(!showPassword)}
           >
-            {showPassword ? '🙈' : '👁️'}
+            {showPassword ? <FaEyeSlash /> : <FaEye />}
           </span>
         </div>
         <button type="submit" className="Login__button" disabled={isLoading}>
