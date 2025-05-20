@@ -528,4 +528,50 @@ router.post(
   }
 );
 
+// Delete Request
+router.delete(
+  '/delete',
+  authenticate,
+  [
+    body('password').notEmpty().withMessage('Password is required.'),
+  ],
+  async (req, res) => {
+    console.log('Delete account request for user:', req.user.id);
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      console.warn('Validation errors:', errors.array());
+      return res.status(400).json({ error: { message: errors.array()[0].msg } });
+    }
+
+    try {
+      const { password } = req.body;
+      const user = await User.findById(req.user.id);
+      if (!user) {
+        console.warn('User not found:', req.user.id);
+        return res.status(404).json({ error: { message: 'User not found.' } });
+      }
+
+      if (user.isGoogleAccount) {
+        console.warn('Google account deletion attempted:', req.user.id);
+        return res
+          .status(400)
+          .json({ error: { message: 'Google accounts cannot be deleted this way.' } });
+      }
+
+      const isMatch = await bcrypt.compare(password, user.password);
+      if (!isMatch) {
+        console.warn('Incorrect password for:', req.user.id);
+        return res.status(400).json({ error: { message: 'Incorrect password.' } });
+      }
+
+      await User.deleteOne({ _id: req.user.id });
+      console.log('Account deleted for:', req.user.id);
+      res.status(200).json({ message: 'Account deleted successfully.' });
+    } catch (err) {
+      console.error('Delete account error:', err);
+      res.status(500).json({ error: { message: 'Server error.' } });
+    }
+  }
+);
+
 module.exports = router;
