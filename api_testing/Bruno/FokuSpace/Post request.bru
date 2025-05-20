@@ -1,0 +1,25 @@
+meta {
+  name: Post request
+  type: http
+  seq: 3
+}
+
+post {
+  url: http://localhost:9000/accounts/register
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "name": "Avinash Bruno Test",
+    "email": "avinash0046gul@gmail.com",
+    "password": "Avinash#01",
+    "age": 100,
+    "profession": "Developer"
+  }
+}

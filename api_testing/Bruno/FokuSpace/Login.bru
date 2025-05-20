@@ -1,0 +1,22 @@
+meta {
+  name: Login
+  type: http
+  seq: 7
+}
+
+post {
+  url: http://localhost:9000/accounts/login
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "email": "avinash0046gul@gmail.com",
+    "password": "Avinash#01"
+  }
+}
