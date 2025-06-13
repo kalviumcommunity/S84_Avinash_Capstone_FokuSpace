@@ -1,0 +1,27 @@
+meta {
+  name: Update profile
+  type: http
+  seq: 9
+}
+
+put {
+  url: http://localhost:9000/accounts/profile
+  body: json
+  auth: bearer
+}
+
+headers {
+  Content-Type: application/json
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MmM0YzcyN2UyZThiZGE3ZDE0YmYzNSIsImlhdCI6MTc0NzczNDIzMiwiZXhwIjoxNzQ3NzM3ODMyfQ.iljmLIyoQssF0rtNhT0ikxSA4Ku5LOhrz-Ty8eSKOuM
+}
+
+body:json {
+  {
+    "name": "Avinash Guleria Testing Bruno",
+    "age": 100,
+    "profession": "Senior Developer"
+  }
+}

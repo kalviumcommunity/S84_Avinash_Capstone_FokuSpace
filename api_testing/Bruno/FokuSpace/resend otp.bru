@@ -1,0 +1,21 @@
+meta {
+  name: resend otp
+  type: http
+  seq: 6
+}
+
+post {
+  url: http://localhost:9000/accounts/resend-otp
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "email": "avinash0046gul@gmail.com"
+  }
+}
