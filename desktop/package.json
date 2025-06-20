@@ -1,17 +1,51 @@
 {
-  "name": "desktop",
+  "name": "fokuspace",
   "version": "1.0.0",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
+  "main": "electronJS/main.js",
+  "description": "Fokuspace Desktop Application",
+  "author": "Avinash Guleria",
+  "type": "commonjs",
   "license": "ISC",
-  "description": "",
+  "scripts": {
+    "dev": "electron .",
+    "start": "npm run build-react && electron .",
+    "build-react": "npm run build --prefix react-app",
+    "build": "npm run build-react && electron-builder"
+  },
   "dependencies": {
     "active-win": "^8.2.1",
-    "electron-store": "^10.0.1",
+    "electron-store": "^8.1.0",
     "ps-list": "^8.1.1"
+  },
+  "devDependencies": {
+    "electron": "^36.5.0",
+    "electron-builder": "^26.0.12"
+  },
+  "build": {
+    "appId": "com.fokuspace.desktop",
+    "productName": "FokuSpace",
+    "forceCodeSigning": false,
+    "directories": {
+      "output": "dist-electron"
+    },
+    "asarUnpack": [
+      "**/getInstalledApps.ps1"
+    ],
+    "files": [
+      "electronJS/main.js",
+      "electronJS/preload.js",
+      "electronJS/getInstalledApps.js",
+      "electronJS/getInstalledApps.ps1",
+      "electronJS/lockdown.js",
+      "Fokuspace-electron-app/dist/**/*"
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
   }
 }
