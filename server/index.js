@@ -9,57 +9,25 @@ const connectToDb = require("./database/database");
 const userRoutes = require("./routes/route");
 
 const app = express();
-
-// Validate environment variables
-//  const requiredEnvVars = [
-//    'DB_URL',
-//    'JWT_SECRET',
-//    'EMAIL_FROM',
-//    'EMAIL_PASS',
-//    'GOOGLE_CLIENT_ID',
-//    'GOOGLE_CLIENT_SECRET',
-//    'GOOGLE_CALLBACK_URL',
-//    'CLIENT_URL',
-//  ];
-//  const missingEnvVars = requiredEnvVars.filter((envVar) => !process.env[envVar]);
-//  if (missingEnvVars.length > 0) {
-//    console.error(`Missing environment variables: ${missingEnvVars.join(', ')}`);
-//    process.exit(1);
-//  }
-
-// Middleware
 app.use(express.json());
 app.use(helmet());
 app.use(passport.initialize());
 
 // CORS configuration
 const allowedOrigins = [
-  "http://localhost:3000", // React dev server
-  "http://127.0.0.1:3000", // optional if you use IP directly
-  "process.env.CLIENT_URL", // add prod domain later
+  "http://localhost:3000",
+  "http://127.0.0.1:3000",
+  "process.env.CLIENT_URL",
 ];
 
-// app.use(
-//   cors({
-//     origin: (origin, callback) => {
-//       if (!origin || allowedOrigins.includes(origin)) {
-//         callback(null, true);
-//       } else {
-//         console.warn(`CORS blocked for origin: ${origin}`);
-//         callback(new Error("Not allowed by CORS"));
-//       }
-//     },
-//     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-//     allowedHeaders: ["Content-Type", "Authorization"],
-//     credentials: true,
-//   })
-// );
-
-app.use(cors({
-  origin: '*',
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-}));
+app.use(
+  cors({
+    origin: allowedOrigins,
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true,
+  })
+);
 
 // Rate limiting for sensitive routes
 //  const limiter = rateLimit({
@@ -69,6 +37,7 @@ app.use(cors({
 //  app.use('/accounts', limiter);
 
 // Routes
+
 app.get("/", (req, res) => {
   console.log("GET / request received");
   res.send(`FokuSpace server is running 🚀`);
