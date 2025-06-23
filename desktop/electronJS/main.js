@@ -3,7 +3,7 @@ const path = require("path");
 const { spawn } = require("child_process");
 const { startLockdown, stopLockdown } = require("./lockdown");
 const psList = require("ps-list");
-const getInstalledApps = require("./getInstalledApp");
+const getInstalledApps = require("./getInstalledApps");
 const Store = require("electron-store");
 
 const store = new Store();
@@ -51,6 +51,12 @@ ipcMain.handle("launch-app", async (event, appPath) => {
 ipcMain.handle("get-installed-apps", async () => {
   return new Promise((resolve) => {
     getInstalledApps((apps) => {
+      console.log(
+        "Main process received apps:",
+        apps.length,
+        apps.slice(0, 5),
+        "..."
+      );
       resolve(apps);
     });
   });
