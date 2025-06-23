@@ -1,0 +1,63 @@
+/* App Background */
+.app-container {
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(6px);
+  color: white;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: row;
+  overflow-x: hidden;
+  justify-content: space-between;
+  padding: 2rem;
+  gap: 1.2rem;  /* 🔧 Reduce gap between left and right */
+}
+body::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
+
+/* Left Panel */
+.left-panel {
+  flex: 1;
+  padding: 40px;
+  z-index: 1;
+}
+
+/* Focus Status */
+.focus-status {
+  margin-top: 12px;
+  color: #ffdb70;
+  font-weight: bold;
+  font-size: 0.9rem;
+  text-shadow: 0 0 5px #ffeb3b;
+}
+
+/* Optional: Allowed Apps Section */
+.allowed-apps-section {
+  margin-top: 40px;
+}
+
+/* Installed Apps Panel */
+.installed-apps-panel {
+  flex: 1;
+  padding: 40px;
+  z-index: 1;
+}
+
+/* Hide default number input arrows (Chrome, Safari, Edge) */
+.timer-input::-webkit-outer-spin-button,
+.timer-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Hide default number input arrows (Firefox) */
+.timer-input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/* Container around the input and buttons */
+.timer-input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}

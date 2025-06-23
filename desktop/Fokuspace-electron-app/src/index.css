@@ -1,0 +1,38 @@
+html,
+body {
+  height: 100%;
+  overflow: hidden; /* ❌ disables full-page scroll bar */
+}
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background-color: #0d0d0d; /* Almost black */
+  color: #ffffff; /* White text */
+  font-family: "Segoe UI", sans-serif;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE 10+ */
+}
+
+body::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
+.blackhole-background,
+.stars-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+canvas,
+img {
+  position: absolute;
+  top: 0;
+  left: 0;
+}

@@ -1,6 +1,6 @@
 const { app, BrowserWindow, ipcMain, shell } = require("electron");
 const path = require("path");
-const spawn = require("child_process");
+const { spawn } = require("child_process");
 const { startLockdown, stopLockdown } = require("./lockdown");
 const psList = require("ps-list");
 const getInstalledApps = require("./getInstalledApp");
@@ -125,4 +125,4 @@ app.whenReady().then(() => {
 app.on("window-all-closed", () => {
   if (process.platform !== "darwin") app.quit();
 });
-console.log("working")
+console.log("working");

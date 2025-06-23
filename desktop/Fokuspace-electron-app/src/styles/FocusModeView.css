@@ -1,0 +1,128 @@
+.focus-mode-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 40px;
+  height: 100vh;
+  box-sizing: border-box;
+  color: #e0dfff;
+  gap: 40px;
+}
+
+.focus-panel {
+  flex: 1.3; /* ⬅️ Increased width */
+  padding: 32px;
+  background: rgba(25, 20, 40, 0.6);
+  border: 1px solid rgba(160, 120, 255, 0.15);
+  border-radius: 20px;
+  backdrop-filter: blur(12px);
+  max-width: 600px; /* ⬅️ Optional: prevent stretching too far on large screens */
+}
+
+.focus-panel h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #e8d0ff;
+}
+
+.focus-panel h2 {
+  font-size: 18px;
+  margin: 16px 0 8px;
+  color: #c2b4f8;
+}
+
+.focus-panel ul {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 8px;
+}
+
+.focus-panel li {
+  margin-bottom: 8px;
+}
+
+.focus-panel button {
+  padding: 12px 18px;
+  font-size: 16px;
+  background: rgba(90, 60, 200, 0.2);
+  border: 1px solid rgba(160, 140, 255, 0.3);
+  color: #eae4ff;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.focus-panel button:hover {
+  background: rgba(120, 90, 255, 0.25);
+  color: #ffffff;
+  border-color: rgba(180, 150, 255, 0.5);
+}
+
+/* Exit Section */
+.exit-section {
+  flex: 1;
+  padding: 24px;
+  background: rgba(15, 10, 30, 0.5);
+  border: 1px solid rgba(255, 100, 100, 0.15);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  color: #fdd;
+}
+
+.exit-section h3 {
+  font-size: 18px;
+  color: #ffc7c7;
+  margin-bottom: 6px;
+}
+
+.exit-section h4 {
+  font-size: 14px;
+  color: #c8c8ff;
+  margin-top: 0;
+}
+
+.exit-section pre {
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #fff3f3;
+  margin: 10px 0;
+  user-select: none;
+}
+
+.exit-section input {
+  padding: 10px;
+  width: 100%;
+  font-size: 14px;
+  border-radius: 8px;
+  background-color: rgba(40, 40, 60, 0.5);
+  color: #fff;
+  border: 1px solid rgba(255, 200, 200, 0.25);
+  margin-top: 8px;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.exit-section input:focus {
+  border-color: rgba(255, 150, 150, 0.4);
+}
+
+.exit-section button {
+  margin-top: 12px;
+  padding: 10px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  border: 1px solid rgba(255, 80, 80, 0.3);
+  background: rgba(200, 60, 60, 0.15);
+  color: #ffdcdc;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.exit-section button:hover {
+  background: rgba(255, 80, 80, 0.2);
+  border-color: rgba(255, 100, 100, 0.5);
+  color: #ffffff;
+}

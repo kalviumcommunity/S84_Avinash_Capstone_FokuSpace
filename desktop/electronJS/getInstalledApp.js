@@ -2,7 +2,7 @@ const { exec } = require("child_process");
 const path = require("path");
 const { app } = require("electron");
 
-const getInstalledApp = (callback) => {
+function getInstalledApp(callback) {
   const isPackaged = app?.isPackaged;
   const psScript = isPackaged
     ? path.join(
@@ -26,15 +26,15 @@ const getInstalledApp = (callback) => {
       }
       try {
         const parsed = JSON.parse(stdout.trim());
-        console.log("✅ Installed Apps:", parsed);
+        console.log("✅ Installed Apps:");
         callback(parsed);
-      } catch (err) {
-        console.error("❌ JSON parse Error:", err);
+      } catch (e) {
+        console.error("❌ JSON parse Error:", e);
         console.log("📝 Raw output was:", stdout);
         callback([]);
       }
     }
   );
-};
+}
 
 module.exports = getInstalledApp;

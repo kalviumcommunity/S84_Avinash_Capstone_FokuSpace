@@ -1,0 +1,122 @@
+/* Timer Container */
+.timer-container {
+  background: rgba(20, 15, 35, 0.45); /* Subtle cosmic backdrop */
+  border: 1.5px solid rgba(140, 100, 255, 0.25); /* Glowing purple border */
+  border-radius: 18px;
+  padding: 2rem;
+  max-width: 520px;
+  margin: 2rem auto;
+  color: #f0f0ff;
+  backdrop-filter: blur(10px);
+  animation: fadeIn 1.2s ease-in-out;
+
+  top: 5px;
+  left: 10px;
+}
+
+/* Title */
+.timer-title {
+  font-size: 2.2rem;
+  font-weight: bold;
+  text-align: center;
+  color: #ffffff;
+  margin-bottom: 1rem;
+}
+
+/* Label */
+.timer-label {
+  font-size: 1rem;
+  color: #cfcfff;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+/* Input */
+.timer-input {
+  width: 100%;
+  padding: 0.8rem;
+  background: #1a152b;
+  border: 1px solid #5c4fff;
+  border-radius: 10px;
+  font-size: 1.2rem;
+  color: #fff;
+  text-align: center;
+  outline: none;
+  transition: border 0.3s, background 0.3s;
+}
+
+.timer-input:focus {
+  border-color: #a78bfa;
+  background-color: #241d3d;
+}
+
+/* Timer Display */
+.timer-display {
+  font-size: 2.4rem;
+  text-align: center;
+  margin: 1.2rem 0;
+  color: #ffdde6;
+  font-weight: 600;
+  letter-spacing: 2px;
+  animation: pulseTimer 2.5s infinite ease-in-out;
+}
+
+/* Buttons */
+.timer-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.btn {
+  flex: 1;
+  padding: 0.85rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.3s ease;
+}
+
+.btn.start {
+  background: linear-gradient(135deg, #7a2ce0, #a855f7);
+  color: #ffffff;
+}
+
+.btn.end {
+  background: linear-gradient(135deg, #b91c1c, #ef4444);
+  color: white;
+}
+
+.btn:hover {
+  transform: scale(1.03);
+  filter: brightness(1.1);
+}
+
+/* + / - Buttons */
+.timer-button {
+  padding: 0.7rem 1.2rem;
+  font-size: 1.4rem;
+  border-radius: 8px;
+  background: rgba(85, 65, 130, 0.3);
+  color: #f0e9ff;
+  border: 1px solid rgba(140, 100, 255, 0.4);
+  transition: background 0.3s ease, transform 0.2s;
+  cursor: pointer;
+}
+
+.timer-button:hover {
+  background: rgba(160, 100, 255, 0.25);
+  transform: scale(1.03);
+  color: #fff;
+}
+
+/* Focus status text */
+.focus-status {
+  margin-top: 1rem;
+  text-align: center;
+  font-weight: 600;
+  color: #00ffe0;
+}

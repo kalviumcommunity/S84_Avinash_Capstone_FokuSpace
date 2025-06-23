@@ -9,16 +9,16 @@
   "scripts": {
     "dev": "electron .",
     "start": "npm run build-react && electron .",
-    "build-react": "npm run build --prefix react-app",
+    "build-react": "npm run build --prefix Fokuspace-electron-app",
     "build": "npm run build-react && electron-builder"
   },
   "dependencies": {
-    "active-win": "^8.2.1",
+    "active-win": "^7.5.0",
     "electron-store": "^8.1.0",
-    "ps-list": "^8.1.1"
+    "ps-list": "^7.1.0"
   },
   "devDependencies": {
-    "electron": "^36.5.0",
+    "electron": "^25.9.0",
     "electron-builder": "^26.0.12"
   },
   "build": {

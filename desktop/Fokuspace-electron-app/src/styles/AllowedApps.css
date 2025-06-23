@@ -1,0 +1,70 @@
+/* Allowed Apps Container */
+.allowed-apps {
+  padding: 16px;
+  margin-top: 30px;
+  background: rgba(20, 15, 35, 0.45); /* Subtle cosmic backdrop */
+  border: 1.5px solid rgba(140, 100, 255, 0.25); /* Lavender soft border */
+  border-radius: 18px;
+  backdrop-filter: blur(10px);
+}
+
+/* Title */
+.allowed-apps-title {
+  font-size: 1.25rem;
+  color: #ffffff;
+  margin-bottom: 12px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  font-weight: 600;
+}
+
+/* List */
+.allowed-apps-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* App Item */
+.app-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+  background-color: rgba(255, 255, 255, 0.025);
+  padding: 12px 14px;
+  border-radius: 10px;
+  transition: background-color 0.2s ease;
+}
+
+.app-item:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* App Name */
+.app-name {
+  flex: 1;
+  font-size: 14px;
+  color: #ddddff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Remove Button */
+.remove-button {
+  padding: 4px 10px;
+  font-size: 15px;
+  background-color: #ef4444;
+  border: 1px solid #b91c1c;
+  color: #ffcdd2;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.remove-button:hover {
+  background-color: #b91c1c;
+  border-color: rgba(255, 100, 120, 0.5);
+  color: #fff;
+}

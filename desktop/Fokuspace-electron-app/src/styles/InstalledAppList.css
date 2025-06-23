@@ -1,0 +1,111 @@
+/* Installed Apps Container */
+.installed-apps {
+  padding: 24px;
+  margin-top: 20px;
+  background: rgba(20, 15, 35, 0.5);
+  border: 1px solid rgba(160, 100, 255, 0.15);
+  border-radius: 18px;
+  backdrop-filter: blur(12px);
+  color: #eee;
+  max-width: 720px; /* 🟢 Increased width */
+  width: 100%;
+  box-sizing: border-box;
+  margin-left: auto;
+  margin-right: 10px; /* 🟢 Pull closer to right edge */
+  animation: fadeIn 0.5s ease;
+}
+
+/* Title */
+.installed-apps-title {
+  font-size: 1.4rem;
+  color: #d0bfff;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 1.2rem;
+  text-shadow: 0 0 4px rgba(180, 120, 255, 0.4);
+}
+
+/* Search Input */
+.search-input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px 16px;
+  font-size: 15px;
+  border-radius: 10px;
+  border: 1px solid rgba(160, 160, 255, 0.25);
+  background-color: rgba(40, 30, 60, 0.6);
+  color: #eaeaff;
+  margin-bottom: 20px;
+  transition: all 0.3s ease;
+}
+.search-input::placeholder {
+  color: #999;
+}
+.search-input:focus {
+  outline: none;
+  border-color: rgba(180, 140, 255, 0.6); /* 🟣 Softer purple focus */
+  background-color: rgba(50, 40, 70, 0.85);
+  box-shadow: 0 0 0 2px rgba(190, 120, 255, 0.25); /* 🟢 Optional glowing ring */
+}
+
+.search-input:focus {
+  outline: none; /* ✅ disables default glow */
+}
+/* List */
+.installed-apps-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: none;
+  overflow-y: visible;
+}
+
+/* App Item */
+.app-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(255, 255, 255, 0.015);
+  padding: 10px 14px;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  transition: background-color 0.2s ease;
+}
+
+.app-item:hover {
+  background-color: rgba(255, 255, 255, 0.035);
+}
+
+/* App Name */
+.app-name {
+  font-size: 14px;
+  color: #dcd9f9;
+  flex: 1;
+  margin-right: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.allow-button {
+  padding: 6px 12px;
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: 6px;
+  background: rgba(40, 180, 99, 0.15); /* ✅ green background */
+  border: 1px solid rgba(40, 200, 100, 0.4); /* ✅ green border */
+  color: #b6fcd5; /* ✅ mint text */
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.allow-button:hover {
+  background: rgba(50, 255, 140, 0.25);
+  color: #ffffff;
+  border-color: rgba(50, 255, 140, 0.5);
+}
+
+.allow-button::before {
+  content: "+ ";
+  font-weight: bold;
+  font-size: 15px;
+}
