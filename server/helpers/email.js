@@ -11,7 +11,7 @@ const transporter = nodemailer.createTransport({
 const sendOTPEmail = async (email, content) => {
   console.log(`Sending email to ${email}`);
   const mailOptions = {
-    from: FokuSpace-corporation,
+    from: "FokuSpace-corporation",
     to: email,
     subject: 'FokuSpace Account Verification OTP',
     text: content,
