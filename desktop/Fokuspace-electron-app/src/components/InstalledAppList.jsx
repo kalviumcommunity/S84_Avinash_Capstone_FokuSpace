@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "../styles/InstalledAppList.css";
 
 const InstalledAppList = ({ apps, allowedApps, onAllow, onRemove }) => {
+  
   const [searchQuery, setSearchQuery] = useState("");
 
   const filteredApps = apps.filter(

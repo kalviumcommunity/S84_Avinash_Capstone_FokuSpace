@@ -5,7 +5,7 @@ import AllowedApps from "./components/AllowedApps";
 import StarsBackground from "./components/StarsBackground";
 import BlackHoleBackground from "./components/BlackHoleBackground";
 import "./App.css";
-import './styles/TimerComponent.css'
+import "./styles/TimerComponent.css";
 
 function App() {
   // Timer & Focus Mode State
@@ -27,7 +27,6 @@ function App() {
       setInstalledApps(apps);
     });
   }, []);
-
   // Focus Mode Status Listener
   useEffect(() => {
     const handleFocusModeStatus = (status) => {

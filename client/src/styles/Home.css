@@ -1,0 +1,29 @@
+.download-section {
+  margin-top: 30px;
+}
+
+.download-btn {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 24px;
+  background-color: #333;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-size: 16px;
+  border: 1px solid #555;
+  transition: background-color 0.3s ease, opacity 0.3s ease;
+}
+
+.download-btn:hover {
+  background-color: #444;
+}
+
+.locked .download-btn {
+  background-color: #888;
+  color: #ccc;
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+  filter: blur(0.5px);
+}

@@ -33,7 +33,12 @@ app.use(helmet());
 app.use(passport.initialize());
 
 // CORS configuration
-const allowedOrigins = [process.env.CLIENT_URL, 'http://localhost:9000'];
+const allowedOrigins = [
+  "http://localhost:3000", // React dev server
+  "http://127.0.0.1:3000", // optional if you use IP directly
+  "process.env.CLIENT_URL", // add prod domain later
+];
+
 app.use(
   cors({
     origin: (origin, callback) => {
@@ -56,8 +61,6 @@ app.use(
 //    max: 100, // Limit each IP to 100 requests per windowMs
 //  });
 //  app.use('/accounts', limiter);
-
-
 
 // Routes
 app.get("/", (req, res) => {
