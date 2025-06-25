@@ -1,5 +1,5 @@
 # 📚 FokuSpace: A Distraction-Limiting Study Companion
-
+https://fokuspace.netlify.app/
 ## 🧠 Project Idea & Description
 
 **FokuSpace** is a cross-platform productivity application designed to help students and professionals stay focused by limiting distractions during study or work sessions. It includes a desktop application built with **Electron.js**, and a user-facing website built using the **MERN stack (MongoDB, Express.js, React.js, Node.js)**.
