@@ -29,15 +29,6 @@ app.use(
   })
 );
 
-// Rate limiting for sensitive routes
-//  const limiter = rateLimit({
-//    windowMs: 15 * 60 * 1000, // 15 minutes
-//    max: 100, // Limit each IP to 100 requests per windowMs
-//  });
-//  app.use('/accounts', limiter);
-
-// Routes
-
 app.get("/", (req, res) => {
   console.log("GET / request received");
   res.send(`FokuSpace server is running 🚀`);
