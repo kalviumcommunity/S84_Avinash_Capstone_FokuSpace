@@ -7,7 +7,7 @@
       upperCaseAlphabets: false,
       specialChars: false,
     });
-    console.log('Generated OTP:', otp); // Remove in production
+    // console.log('Generated OTP:', otp); // Remove in production
     return otp;
   };
 

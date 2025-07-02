@@ -4,9 +4,10 @@ const mongoose = require("mongoose");
 require("dotenv").config();
 const cors = require("cors");
 const helmet = require("helmet");
-const rateLimit = require("express-rate-limit");
 const connectToDb = require("./database/database");
 const userRoutes = require("./routes/route");
+const googleRoute = require("./routes/google auth routes/googleauth");
+const otpRoute = require('./routes/otpRoutes')
 
 const app = express();
 app.use(express.json());
@@ -15,7 +16,7 @@ app.use(passport.initialize());
 
 // CORS configuration
 const allowedOrigins = [
-  "http://localhost:3000",
+  "http://localhost:5173",
   "http://127.0.0.1:3000",
   process.env.CLIENT_URL,
 ];
@@ -23,6 +24,7 @@ const allowedOrigins = [
 app.use(
   cors({
     origin: allowedOrigins,
+    // origin: "*",
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
@@ -35,6 +37,8 @@ app.get("/", (req, res) => {
 });
 
 app.use("/accounts", userRoutes);
+app.use("/accounts", googleRoute);
+app.use("/accounts", otpRoute);
 
 // Catch-all for unmatched routes
 app.use((req, res) => {
@@ -63,6 +67,7 @@ const Db_url = process.env.DB_URL;
 mongoose.connection.on("error", (err) => {
   console.error("MongoDB connection error:", err);
 });
+
 mongoose.connection.on("disconnected", () => {
   console.warn("MongoDB disconnected, attempting to reconnect...");
 });
