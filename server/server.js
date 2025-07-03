@@ -8,11 +8,13 @@ const connectToDb = require("./database/database");
 const userRoutes = require("./routes/route");
 const googleRoute = require("./routes/google auth routes/googleauth");
 const otpRoute = require('./routes/otpRoutes')
+const {generalLimiter} = require('./middleware/rateLimiter')
 
 const app = express();
 app.use(express.json());
 app.use(helmet());
 app.use(passport.initialize());
+app.use(generalLimiter)
 
 // CORS configuration
 const allowedOrigins = [

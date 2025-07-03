@@ -3,12 +3,13 @@ const { body, validationResult } = require("express-validator");
 const User = require("../models/User");
 const generateOTP = require("../helpers/otp");
 const sendOTPEmail = require("../helpers/email");
+const {otpLimiter} = require('../middleware/rateLimiter');
 
 const router = express.Router();
 
 // Verify OTP
 router.post(
-  '/verify-otp',
+  '/verify-otp', otpLimiter,
   [
     body('email').isEmail().withMessage('Please provide a valid email address.'),
     body('otp').notEmpty().withMessage('OTP is required.'),
@@ -53,7 +54,7 @@ router.post(
 
 // Resend OTP
 router.post(
-  '/resend-otp',
+  '/resend-otp', otpLimiter,
   [body('email').isEmail().withMessage('Please provide a valid email address.')],
   async (req, res) => {
     console.log('Resend OTP request:', req.body.email);
