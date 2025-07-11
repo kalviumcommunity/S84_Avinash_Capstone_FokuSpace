@@ -3,14 +3,14 @@ import { Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Dashboard from './pages/Dashboard';
-import Register from './components/Register';
-import VerifyOtp from './components/OtpVerification';
-import Login from './components/Login';
+import Register from './components/auth/Register';
+import VerifyOtp from './components/auth/OtpVerification';
+import Login from './components/auth/Login';
 import Profile from './components/Profile';
 import ResetPasswordRequest from './components/ResetPasswordRequest';
 import ResetPassword from './components/ResetPassword';
 import { PrivateRoute } from './components/PrivateRoute';
-import GoogleCallback from './components/GoogleCallback';
+import GoogleCallback from './components/google auth/GoogleCallback';
 import './index.css';
 
 console.log('Rendering App component');

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { verifyOtp, resendOtp } from '../api';
-import '../index.css';
+import { verifyOtp, resendOtp } from '../../api';
+// import '../../index.scss';
 
 const VerifyOtp = () => {
   const [otp, setOtp] = useState('');
