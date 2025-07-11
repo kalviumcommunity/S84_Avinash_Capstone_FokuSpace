@@ -14,7 +14,7 @@ const app = express();
 app.use(express.json());
 app.use(helmet());
 app.use(passport.initialize());
-app.use(generalLimiter)
+app.use(generalLimiter) 
 
 // CORS configuration
 const allowedOrigins = [

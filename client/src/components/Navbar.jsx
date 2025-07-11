@@ -1,52 +1,63 @@
-import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import '../index.css';
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import "../styles/Navbar.scss"          // ← new scoped styles
 
 const Navbar = () => {
+  const [open, setOpen] = useState(false);  // mobile drawer
   const navigate = useNavigate();
-  const token = localStorage.getItem('token');
-  console.log('Navbar rendered, token:', !!token);
+  const token = localStorage.getItem("token");
 
   const handleLogout = () => {
-    console.log('Logging out');
-    localStorage.removeItem('token');
-    localStorage.removeItem('pendingVerificationEmail');
-    navigate('/login');
+    localStorage.removeItem("token");
+    localStorage.removeItem("pendingVerificationEmail");
+    navigate("/login");
   };
 
   return (
-    <nav className="navbar">
-      <Link to="/" className="logo">
-        FokuSpace
+    <header className="navbar">
+      <Link to="/" className="navbar__logo">
+        Foku<span>Space</span>
       </Link>
-      <ul className="nav-links">
-        <li>
-          <Link to="/">Home</Link>
-        </li>
+
+      {/* Hamburger (mobile) */}
+      <button
+        className={`navbar__toggle ${open ? "is-active" : ""}`}
+        onClick={() => setOpen(!open)}
+        aria-label="Menu"
+      >
+        <span />
+        <span />
+        <span />
+      </button>
+
+      {/* Links */}
+      <nav className={`navbar__menu ${open ? "is-open" : ""}`}>
+        <Link to="/" onClick={() => setOpen(false)}>
+          Home
+        </Link>
+
         {token ? (
           <>
-            <li>
-              <Link to="/dashboard">Dashboard</Link>
-            </li>
-            <li>
-              <Link to="/profile">Profile</Link>
-            </li>
-            <li>
-              <button onClick={handleLogout}>Logout</button>
-            </li>
+            <Link to="/dashboard" onClick={() => setOpen(false)}>
+              Dashboard
+            </Link>
+            <Link to="/profile" onClick={() => setOpen(false)}>
+              Profile
+            </Link>
+            <button onClick={handleLogout}>Logout</button>
           </>
         ) : (
           <>
-            <li>
-              <Link to="/login">Login</Link>
-            </li>
-            <li>
-              <Link to="/register">Register</Link>
-            </li>
+            <Link to="/login" onClick={() => setOpen(false)}>
+              Login
+            </Link>
+            <Link to="/register" onClick={() => setOpen(false)}>
+              Register
+            </Link>
           </>
         )}
-      </ul>
-    </nav>
+      </nav>
+    </header>
   );
 };
 
