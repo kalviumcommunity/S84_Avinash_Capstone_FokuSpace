@@ -16,6 +16,7 @@ const generalLimiter = rateLimit({
 const otpLimiter = rateLimit({
   windowMs: 10 * 60 * 1000,
   max: 5,
+  keyGenerator: (req) => req.ip + (req.body.email || ''),
   message: {
     error: {
       message: "Too many OTP verification attempts. Please try again after 10 minutes.",
