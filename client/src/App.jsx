@@ -6,7 +6,7 @@ import Dashboard from './pages/Dashboard';
 import Register from './components/auth/Register';
 import VerifyOtp from './components/auth/OtpVerification';
 import Login from './components/auth/Login';
-import Profile from './components/User Profile/Profile';
+import Profile from './components/user-profile/Profile';
 import ResetPasswordRequest from './components/User Profile/ResetPasswordRequest';
 import ResetPassword from './components/User Profile/ResetPassword';
 import { PrivateRoute } from './components/PrivateRoute';
