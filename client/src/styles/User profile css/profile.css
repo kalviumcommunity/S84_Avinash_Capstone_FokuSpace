@@ -1,0 +1,361 @@
+/* ---------- ROOT ---------- */
+:root {
+  --glass-bg: rgba(255, 255, 255, 0.12);
+  --glass-brd: rgba(255, 255, 255, 0.14);
+  --ring1: #1845ad;
+  --ring2: #ff512f;
+  --text-light: #d6d6d6;
+  --danger: #e53935;
+  --danger-hover: #d32f2f;
+}
+
+/* ---------- PAGE SHELL ---------- */
+.profile {
+  min-height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #080710;
+  font-family: "Poppins", sans-serif;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  padding: 36px; /* Reduced from 48px */
+  position: relative;
+}
+
+/* blurred rings (smaller) */
+.profile__ring {
+  position: absolute;
+  width: 320px; /* Reduced from 420px */
+  height: 320px;
+  border-radius: 50%;
+  filter: blur(140px); /* Reduced from 180px */
+  opacity: 0.85;
+  z-index: 0;
+}
+.profile__ring--one {
+  background: var(--ring1);
+  top: -100px; /* Reduced from -140px */
+  left: -80px; /* Reduced from -110px */
+}
+.profile__ring--two {
+  background: var(--ring2);
+  bottom: -120px; /* Reduced from -160px */
+  right: -70px; /* Reduced from -90px */
+}
+
+/* ---------- CARD ---------- */
+.profile__card {
+  width: 480px; /* Reduced from 640px */
+  background: var(--glass-bg);
+  border: 2px solid var(--glass-brd);
+  backdrop-filter: blur(10px); /* Reduced from 14px */
+  border-radius: 20px; /* Reduced from 26px */
+  box-shadow: 0 0 48px rgba(8, 7, 16, 0.55); /* Reduced from 64px */
+  color: #fff;
+  padding: 58px 48px 50px; /* Reduced from 78px 64px 68px */
+  position: relative;
+  z-index: 1;
+  animation: pop 0.55s cubic-bezier(0.19, 1, 0.22, 1);
+  overflow: visible;
+}
+
+@keyframes pop {
+  0% {
+    transform: translateY(34px) scale(0.92); /* Reduced from 46px */
+    opacity: 0;
+  }
+}
+
+/* ---------- AVATAR ---------- */
+.profile__title {
+  position: relative;
+  padding-top: 60px; /* Reduced from 80px */
+  margin-bottom: 8px; /* Reduced from 10px */
+  font-size: 32px; /* Reduced from 40px */
+  font-weight: 700;
+  text-align: center;
+}
+
+.profile__title::before {
+  content: attr(data-initials);
+  position: relative;
+  top: -60px; /* Reduced from -80px */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px; /* Reduced from 130px */
+  height: 100px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.16);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px; /* Reduced from 42px */
+  font-weight: 800;
+  color: #fff;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.18); /* Reduced from 14px */
+}
+
+.profile__subtitle {
+  text-align: center;
+  font-size: 16px; /* Reduced from 20px */
+  color: var(--text-light);
+  margin-bottom: 28px; /* Reduced from 36px */
+}
+
+/* ---------- LOGOUT ---------- */
+.profile__logout {
+  width: 100%;
+  padding: 14px 0; /* Reduced from 18px */
+  border: none;
+  border-radius: 6px; /* Reduced from 8px */
+  background: rgba(255, 255, 255, 0.3);
+  color: #fff;
+  font-weight: 600;
+  font-size: 14px; /* Reduced from 18px */
+  cursor: pointer;
+  margin-bottom: 32px; /* Reduced from 40px */
+  transition: transform 0.25s, background 0.25s;
+}
+.profile__logout:hover {
+  transform: translateY(-2px); /* Reduced from -3px */
+  background: rgba(255, 255, 255, 0.55);
+}
+
+/* ---------- TOAST ---------- */
+.profile__toast {
+  text-align: center;
+  font-size: 16px; /* Reduced from 20px */
+  margin-bottom: 18px; /* Reduced from 24px */
+  opacity: 0;
+  animation: fadeIn 0.35s forwards;
+}
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+.profile__toast--error {
+  color: #ff4c4c;
+}
+.profile__toast--success {
+  color: #4caf50;
+}
+
+/* ---------- FORM ---------- */
+.profile__form {
+  margin-top: 34px; /* Reduced from 44px */
+  animation: slideUp 0.4s ease forwards;
+}
+@keyframes slideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(14px); /* Reduced from 18px */
+  }
+}
+
+/* ---------- INPUT ---------- */
+.profile__input {
+  width: 100%;
+  height: 54px; /* Reduced from 70px */
+  margin-top: 14px; /* Reduced from 18px */
+  padding: 0 16px; /* Reduced from 20px */
+  border: none;
+  border-radius: 6px; /* Reduced from 8px */
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-size: 16px; /* Reduced from 20px */
+  transition: box-shadow 0.25s;
+}
+.profile__input:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.45); /* Reduced from 3px */
+}
+.profile__input::placeholder {
+  color: #c9c9c9;
+}
+
+/* ---------- BUTTON ---------- */
+.profile__btn {
+  width: 100%;
+  height: 54px; /* Reduced from 70px */
+  border: none;
+  border-radius: 6px; /* Reduced from 8px */
+  background: #ffffff;
+  color: #080710;
+  font-weight: 700;
+  font-size: 18px; /* Reduced from 22px */
+  cursor: pointer;
+  margin-top: 20px; /* Reduced from 26px */
+  transition: transform 0.25s, background 0.3s;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.28); /* Reduced from 8px 20px */
+}
+.profile__btn:hover {
+  transform: translateY(-3px); /* Reduced from -4px */
+  background: #f1f1f1;
+}
+.profile__btn--danger {
+  background: var(--danger);
+  color: #fff;
+}
+.profile__btn--danger:hover {
+  background: var(--danger-hover);
+}
+
+/* ---------- SPINNER ---------- */
+.profile__loading {
+  min-height: 100vh;
+  background: #080710;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.profile__spinner {
+  width: 60px; /* Reduced from 80px */
+  height: 60px;
+  border-radius: 50%;
+  border: 6px solid rgba(255, 255, 255, 0.18); /* Reduced from 8px */
+  border-top-color: #fff;
+  animation: spin 0.9s linear infinite;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ---------- SMALL SCREENS ---------- */
+@media (max-width: 480px) { /* Adjusted from 600px */
+  .profile__card {
+    width: 100%;
+    padding: 48px 26px 40px; /* Reduced from 64px 34px 54px */
+    border-radius: 0;
+  }
+  .profile__ring {
+    display: none;
+  }
+}
+.profile__input--age {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Reduced from 12px */
+}
+
+.profile__age-btn {
+  width: 30px; /* Reduced from 38px */
+  height: 30px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.18);
+  color: #fff;
+  font-size: 18px; /* Reduced from 22px */
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile__age-btn:hover {
+  background: rgba(255, 255, 255, 0.32);
+  transform: translateY(-1px) scale(1.08); /* Adjusted from -2px */
+}
+
+/* ---------- Age field wrapper ---------- */
+.profile__age-wrap {
+  position: relative;
+  width: 100%;
+}
+
+.profile__input--age {
+  padding-right: 90px; /* Reduced from 120px */
+  -moz-appearance: textfield;
+}
+.profile__input--age::-webkit-inner-spin-button,
+.profile__input--age::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* ---------- Custom + / – buttons ---------- */
+.age-btn {
+  position: absolute;
+  top: 5px; /* Reduced from 7px */
+  width: 36px; /* Reduced from 48px */
+  height: 42px; /* Reduced from 56px */
+  border: none;
+  border-radius: 6px; /* Reduced from 8px */
+  font-size: 26px; /* Reduced from 34px */
+  font-weight: 600;
+  line-height: 1;
+  color: #080710;
+  background: #ffffff;
+  cursor: pointer;
+  box-shadow: 0 3px 9px rgba(0, 0, 0, 0.25); /* Reduced from 4px 12px */
+  transition: transform 0.25s, background 0.3s;
+}
+
+.age-btn--dec { right: 48px; } /* Reduced from 64px */
+.age-btn--inc { right: 6px; } /* Reduced from 8px */
+
+.age-btn:hover {
+  transform: translateY(-2px); /* Reduced from -3px */
+  background: #f1f1f1;
+}
+
+.age-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.profile__card {
+  display: flex;
+  flex-direction: row;
+  gap: 28px;
+  width: 960px; /* Increased width for 2-column layout */
+  padding: 48px;
+}
+
+.profile__card-left,
+.profile__card-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+/* Align avatar and content in left */
+.profile__card-left {
+  align-items: center;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  padding-right: 24px;
+}
+
+/* Right form section scrollable if needed */
+.profile__card-right {
+  padding-left: 24px;
+  overflow-y: hidden;
+}
+
+/* ---------- RESPONSIVE: Stack profile columns on small screens ---------- */
+@media (max-width: 768px) {
+  .profile__card {
+    flex-direction: column;
+    width: 100%;
+    padding: 32px 20px;
+    gap: 32px;
+  }
+
+  .profile__card-left {
+    padding-right: 0;
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding-bottom: 24px;
+  }
+
+  .profile__card-right {
+    padding-left: 0;
+  }
+}

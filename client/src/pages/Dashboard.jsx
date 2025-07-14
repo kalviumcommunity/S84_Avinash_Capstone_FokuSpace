@@ -1,43 +1,54 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { getUsers } from '../api';
-import '../index.css';
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { getUsers } from "../api";
+import "../styles/pages css/dashboard.css";
 
 const Dashboard = () => {
   const [users, setUsers] = useState([]);
-  const [error, setError] = useState('');
-  const navigate = useNavigate();
+  const [error, setError] = useState("");
+  const nav = useNavigate();
 
   useEffect(() => {
-    console.log('Fetching users for dashboard');
-    const fetchUsers = async () => {
+    (async () => {
       try {
-        const response = await getUsers();
-        console.log('Users fetched:', response.users.length);
-        setUsers(response.users || []);
+        const { users } = await getUsers();
+        setUsers(users || []);
       } catch (err) {
-        console.error('Fetch users error:', err);
-        setError(err || 'Failed to load users');
-        if (err === 'Session expired. Please log in again.') {
-          navigate('/login');
-        }
+        setError(err || "Failed to load users");
+        if (err === "Session expired. Please log in again.") nav("/login");
       }
-    };
-    fetchUsers();
-  }, [navigate]);
+    })();
+  }, [nav]);
 
   return (
     <div className="dashboard">
-      <h2>Dashboard</h2>
-      {error && <p className="error-message">{error}</p>}
-      <h3>All Users</h3>
-      <ul>
-        {users.map((user) => (
-          <li key={user._id}>
-            {user.name} ({user.email}) - {user.profession}, Age: {user.age}
-          </li>
-        ))}
-      </ul>
+      <div className="dashboard__ring dashboard__ring--one" />
+      <div className="dashboard__ring dashboard__ring--two" />
+
+      <div className="dashboard__card">
+        <h2 className="dashboard__title">Dashboard</h2>
+        {error && <p className="dashboard__error">{error}</p>}
+
+        <div className="dashboard__table">
+          {/* column headers */}
+          <div className="dashboard__row dashboard__row--head">
+            <span>Name</span>
+            <span>Email</span>
+            <span>Profession</span>
+            <span className="dash-age">Age</span>
+          </div>
+
+          {/* data rows */}
+          {users.map((u, i) => (
+            <div key={u._id} className={`dashboard__row ${i % 2 ? "alt" : ""}`}>
+              <span>{u.name}</span>
+              <span className="dashboard__email">{u.email}</span>
+              <span>{u.profession}</span>
+              <span className="dash-age">{u.age}</span>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 };

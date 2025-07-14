@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { login, googleLogin } from "../../api";
 // 👇 Import the new gradient/block‑cube styles
-import "../../styles/Login.scss";
+import "../../styles/auth css/Login.scss";
 import EyeSwitch from "../Creative Icons/EyeSwitch";
 
 const Login = () => {
@@ -89,11 +89,13 @@ const Login = () => {
               onChange={handleChange}
               disabled={isLoading}
             />
-            <div className="eye-switch-wrapper">
+
+            {/* Floating toggle switch */}
+            <div className="login__eye-toggle">
               <EyeSwitch
                 isOn={showPassword}
                 onToggle={setShowPassword}
-                size={50}
+                size={48} // or 50, depending on your switch design
               />
             </div>
           </div>
