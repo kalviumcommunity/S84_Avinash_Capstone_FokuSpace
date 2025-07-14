@@ -6,7 +6,7 @@ import {
   changePassword,
   deleteAccount,
 } from "../../api";
-import "../../styles/User profile css/Profile.css";
+import "../../styles/user-profile-css/Profile.css";
 
 const Profile = () => {
   const navigate = useNavigate();
