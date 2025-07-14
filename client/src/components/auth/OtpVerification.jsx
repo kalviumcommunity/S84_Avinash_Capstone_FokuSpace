@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { verifyOtp, resendOtp } from "../../api";
-import "../../styles/auth css/otpVerification.css";
+import "../../styles/auth-css/OtpVerification.scss";
 
 const OTP_LENGTH = 6;
 

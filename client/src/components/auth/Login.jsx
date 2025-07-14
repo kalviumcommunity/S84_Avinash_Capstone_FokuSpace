@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { login, googleLogin } from "../../api";
 // 👇 Import the new gradient/block‑cube styles
-import "../../styles/auth css/Login.scss";
+import "../../styles/auth-css/Login.scss";
 import EyeSwitch from "../Creative Icons/EyeSwitch";
 
 const Login = () => {

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { resetPassword } from "../../api";
-import "../../styles/pages css/ResetPassword.css";
+import "../../styles/pages-css/ResetPassword.css";
 
 const ResetPassword = () => {
   const [formData, setFormData] = useState({ newPassword: "" });

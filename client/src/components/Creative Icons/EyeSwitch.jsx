@@ -1,6 +1,6 @@
 // src/components/Creative Icons/EyeSwitch.jsx
 import React from "react";
-import "../../styles/Creative css/EyeSwitch.scss";
+import "../../styles/Creative-css/EyeSwitch.scss";
 
 const EyeSwitch = ({ isOn, onToggle, size = 46 }) => {
   return (

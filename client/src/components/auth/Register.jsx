@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { register } from "../../api";
-import "../../styles/auth css/Register.scss";
+import "../../styles/auth-css/Register.scss";
 import EyeSwitch from "../Creative Icons/EyeSwitch";
 
 const Register = () => {
