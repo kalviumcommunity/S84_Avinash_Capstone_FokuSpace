@@ -17,6 +17,7 @@ console.log('Rendering App component');
 function App() {
   return (
     <div className="App">
+      
       <Navbar />
       <div className="container">
         <Routes>

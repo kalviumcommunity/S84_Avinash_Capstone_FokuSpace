@@ -1,29 +1,201 @@
-.download-section {
-  margin-top: 30px;
+/* ---------- Root Theme Variables ---------- */
+:root {
+  --glass-bg: hsla(0, 0%, 100%, 0.08);
+  --glass-border: hsla(0, 0%, 100%, 0.15);
+  --glass-hover: hsla(0, 0%, 100%, 0.12);
+  --primary: #7c5fff;
+  --primary-hover: #6848ff;
+  --text: #f2f3f5;
+  --text-dim: #cfcfcf;
+  --bg-gradient: radial-gradient(circle at top, #292b35 0%, #16171e 100%);
 }
 
-.download-btn {
+/* ---------- Global Styles ---------- */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: var(--bg-gradient);
+  color: var(--text);
+  overflow-x: hidden;
+}
+
+/* ---------- Layout Container ---------- */
+.home__container {
+  min-height: 100dvh;
+  padding: 4rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6rem;
+}
+
+/* ---------- Hero Section ---------- */
+.home__hero {
+  text-align: center;
+  max-width: 700px;
+  margin-top: 1rem;
+}
+
+.home__title {
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 700;
+  margin-bottom: 1rem;
+  letter-spacing: -0.03em;
+}
+
+.home__subtitle {
+  font-size: clamp(1.1rem, 1.5vw + 0.8rem, 1.35rem);
+  margin-bottom: 2rem;
+  color: var(--text-dim);
+  line-height: 1.6;
+}
+
+/* ---------- Call to Action Button ---------- */
+.home__cta-btn,
+.home__download-btn {
   display: inline-block;
-  margin-top: 20px;
-  padding: 12px 24px;
-  background-color: #333;
-  color: white;
+  padding: 0.9rem 2.5rem;
+  border-radius: 2rem;
+  font-weight: 600;
   text-decoration: none;
-  border-radius: 8px;
-  font-size: 16px;
-  border: 1px solid #555;
-  transition: background-color 0.3s ease, opacity 0.3s ease;
+  text-align: center;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: none;
+  transition: background 0.25s ease, transform 0.2s ease;
+  cursor: pointer;
 }
 
-.download-btn:hover {
-  background-color: #444;
+.home__cta-btn {
+  background: var(--primary);
+  color: #fff;
 }
 
-.locked .download-btn {
-  background-color: #888;
-  color: #ccc;
-  opacity: 0.5;
-  cursor: not-allowed;
+.home__cta-btn:hover {
+  background: var(--primary-hover);
+  transform: translateY(-3px);
+}
+
+/* ---------- Download Button Section ---------- */
+.home__download {
+  margin-top: 1.5rem;
+}
+
+.home__download-btn {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  color: #fff;
+  transition: all 0.3s ease;
+}
+
+.home__download-btn:hover {
+  background: var(--glass-hover);
+  transform: translateY(-2px);
+}
+
+/* Locked download */
+.home__download--locked .home__download-btn {
   pointer-events: none;
-  filter: blur(0.5px);
+  opacity: 0.5;
+  border-style: dashed;
 }
+
+/* ---------- Features Section ---------- */
+.home__features {
+  width: 100%;
+  max-width: 1200px;
+  text-align: center;
+}
+
+.home__features h2 {
+  font-size: 2.2rem;
+  margin-bottom: 2rem;
+  color: var(--text);
+}
+
+.home__features-grid {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  padding: 0 1rem;
+}
+
+.home__feature-card {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 1.5rem;
+  padding: 2rem;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.home__feature-card:hover {
+  transform: translateY(-6px);
+  background: var(--glass-hover);
+}
+
+.home__feature-card h3 {
+  font-size: 1.3rem;
+  margin-bottom: 0.6rem;
+  color: #fff;
+}
+
+.home__feature-card p {
+  font-size: 1rem;
+  color: var(--text-dim);
+  line-height: 1.5;
+}
+
+/* ---------- Highlight / Final CTA Section ---------- */
+.home__highlight {
+  text-align: center;
+  max-width: 750px;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 1.75rem;
+  padding: 2.5rem;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: transform 0.3s ease;
+}
+
+.home__highlight:hover {
+  transform: translateY(-5px);
+  background: var(--glass-hover);
+}
+
+.home__highlight h2 {
+  font-size: 1.9rem;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+
+.home__highlight p {
+  font-size: 1.05rem;
+  color: var(--text-dim);
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+/* ---------- Responsive Adjustments ---------- */
+@media (max-width: 480px) {
+  .home__cta-btn,
+  .home__download-btn {
+    width: 100%;
+  }
+
+  .home__container {
+    padding: 2.5rem 1rem;
+    gap: 4rem;
+  }
+
+  .home__highlight {
+    padding: 2rem 1.25rem;
+  }
+
+  .home__feature-card {
+    padding: 1.5rem;
+  }
+}
+
