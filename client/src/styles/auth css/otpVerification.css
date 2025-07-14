@@ -1,0 +1,96 @@
+/* ---------- Base ---------- */
+.otpVerify {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: #282a36;
+  font-family: "Poppins", sans-serif;
+  color: #fff;
+}
+
+.otpVerify__heading {
+  margin-bottom: 24px;
+}
+
+/* ---------- Field (six boxes) ---------- */
+.otpVerify__field {
+  display: flex;
+  margin-bottom: 22px;
+}
+
+.otpVerify__input {
+  width: 45px;
+  height: 48px;
+  font-size: 30px;
+  text-align: center;
+  font-weight: bold;
+  color: #fff;
+  background: #21232d;
+  border: 2px solid #55525c;
+  border-radius: 5px;
+  margin: 2px;
+  outline: none;
+  transition: all 0.1s;
+}
+
+.otpVerify__input:focus {
+  border: 2px solid #a527ff;
+  box-shadow: 0 0 2px 2px #a527ff6a;
+  transform: scale(1.05);
+}
+
+.space {
+  margin-right: 1rem !important;
+}
+
+.disabled {
+  opacity: 0.5;
+}
+
+/* ---------- Error ---------- */
+.otpVerify__error {
+  margin-bottom: 14px;
+  color: #ff4c4c;
+  font-size: 14px;
+}
+
+/* ---------- Buttons ---------- */
+.otpVerify__button {
+  width: 180px;
+  padding: 12px 0;
+  border: none;
+  border-radius: 5px;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  background: #ffffff;
+  color: #282a36;
+  transition: background 0.3s;
+}
+
+.otpVerify__button:hover {
+  background: #e7e7e7;
+}
+
+.otpVerify__button--secondary {
+  margin-top: 10px;
+  background: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+}
+
+.otpVerify__button--secondary:hover {
+  background: rgba(255, 255, 255, 0.45);
+}
+
+.otpVerify__button:disabled,
+.otpVerify__input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.verify__otp{
+    margin-left: 4rem;
+}

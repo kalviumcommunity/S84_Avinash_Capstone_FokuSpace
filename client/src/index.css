@@ -5,8 +5,11 @@
   box-sizing: border-box;
 }
 
-html, body {
-  height: 100%;
+html,
+body {
+  height: auto;
+  min-height: 100%;
+  overflow: visible;
   width: 100%;
   font-family: 'Poppins', sans-serif;
   background-color: #080710; /* dark base */
@@ -22,7 +25,8 @@ a {
   text-decoration: none;
 }
 
-ul, ol {
+ul,
+ol {
   list-style: none;
 }
 
@@ -39,8 +43,9 @@ body::-webkit-scrollbar {
   display: none;
 }
 body {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;     /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: thin;
+  scrollbar-color: #2e3350 #0d1021;
 }
 
 /* === App Root === */
@@ -48,4 +53,33 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+}
+
+/* === Custom Scrollbar === */
+body::-webkit-scrollbar {
+  width: 8px;
+  background: #0d1021;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: #2e3350;
+  border-radius: 8px;
+  border: 2px solid #0d1021;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background: #44486a;
+}
+
+/* =========================================================
+   OVERRIDES (prevent inner scrollbars & double‑scroll issue)
+   ========================================================= */
+#root,
+.App,
+.layout,
+.main-wrapper,
+.profile-page-wrapper {
+  height: auto !important;      /* grow naturally */
+  min-height: 100% !important;  /* still at least full viewport */
+  overflow: visible !important; /* no inner scrollbars */
 }
