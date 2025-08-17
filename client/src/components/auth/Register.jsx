@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { register } from "../../api";
+import { register, login, googleLogin } from "../../api";
 import "../../styles/auth css/Register.scss";
 import EyeSwitch from "../Creative Icons/EyeSwitch";
 
@@ -153,6 +153,14 @@ const Register = () => {
         {/* Submit */}
         <button className="register__button" type="submit" disabled={isLoading}>
           {isLoading ? "Registering..." : "Register"}
+        </button>
+        <button
+          type="button"
+          onClick={googleLogin}
+          className="login__button login__button--google"
+          disabled={isLoading}
+        >
+          Register with Google
         </button>
 
         <p className="register__link">

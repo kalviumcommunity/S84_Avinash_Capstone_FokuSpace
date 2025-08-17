@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { login, googleLogin } from "../../api";
-// 👇 Import the new gradient/block‑cube styles
 import "../../styles/auth css/Login.scss";
 import EyeSwitch from "../Creative Icons/EyeSwitch";
 
@@ -95,7 +94,7 @@ const Login = () => {
               <EyeSwitch
                 isOn={showPassword}
                 onToggle={setShowPassword}
-                size={48} // or 50, depending on your switch design
+                size={48}
               />
             </div>
           </div>
@@ -115,21 +114,11 @@ const Login = () => {
           Login with Google
         </button>
         <br />
-        {/* Links */}
         <p className="login__link">
           Forgot password? <a href="/reset-password-request">Reset it</a>
         </p>
         <p className="login__link">
           Don’t have an account? <a href="/register">Register here</a>
-        </p>
-        <br />
-
-        <p>
-          It is Still in working phase. If you are facing "An error occurred"
-          try reloading the page or switch to incognito mode.
-          <br />
-          The Login with Google button is not functional yet.
-          <br />
         </p>
       </form>
     </div>
