@@ -1,7 +1,7 @@
 import axios from 'axios';
 
    console.log('Initializing axios API client');
-   const baseURL = (import.meta.env.VITE_API_URL || 'http://localhost:9000/accounts').replace(/\/+$/, '');
+   const baseURL = (import.meta.env.VITE_API_URL).replace(/\/+$/, '');
    const API = axios.create({
      baseURL,
      timeout: 5000,
