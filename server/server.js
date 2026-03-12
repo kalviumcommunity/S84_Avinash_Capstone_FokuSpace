@@ -33,11 +33,6 @@ app.use(
   })
 );
 
-app.get("/", (req, res) => {
-  console.log("GET / request received");
-  res.send(`FokuSpace server is running 🚀`);
-});
-
 // Health check endpoint for uptime monitoring (UptimeRobot)
 app.get("/health", (req, res) => {
   res.status(200).json({ status: "ok", timestamp: new Date() });
