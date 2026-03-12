@@ -42,6 +42,11 @@ app.use("/accounts", userRoutes);
 app.use("/accounts", googleRoute);
 app.use("/accounts", otpRoute);
 
+
+app.use('/', (req, res) => {
+  res.send('Welcome to FokuSpace');
+});
+
 // Catch-all for unmatched routes
 app.use((req, res) => {
   console.warn(`Route not found: ${req.method} ${req.url}`);
@@ -62,9 +67,6 @@ app.use((err, req, res, next) => {
   });
 });
 
-app.use('/', (req, res) => {
-  res.send('Welcome to FokuSpace');
-});
 
 // MongoDB connection and server start
 const Port = process.env.PORT || 9000;
