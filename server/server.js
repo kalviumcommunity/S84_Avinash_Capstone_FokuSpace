@@ -38,6 +38,11 @@ app.get("/", (req, res) => {
   res.send(`FokuSpace server is running 🚀`);
 });
 
+// Health check endpoint for uptime monitoring (UptimeRobot)
+app.get("/health", (req, res) => {
+  res.status(200).json({ status: "ok", timestamp: new Date() });
+});
+
 app.use("/accounts", userRoutes);
 app.use("/accounts", googleRoute);
 app.use("/accounts", otpRoute);
@@ -60,6 +65,10 @@ app.use((err, req, res, next) => {
       ...(process.env.NODE_ENV === "development" && { stack: err.stack }),
     },
   });
+});
+
+app.use('/', (req, res) => {
+  res.send('Welcome to FokuSpace');
 });
 
 // MongoDB connection and server start
